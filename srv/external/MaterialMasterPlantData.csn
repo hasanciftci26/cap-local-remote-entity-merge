@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "creator": "cds-dk 6.3.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "MaterialMasterPlantData.MaterialMasterPlantData": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.UUID"
+        },
+        "materialCode": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 40
+        },
+        "plant": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 4
+        },
+        "containerRequirements": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 2
+        },
+        "grossWeight": {
+          "notNull": false,
+          "type": "cds.Decimal",
+          "scale": 3,
+          "precision": 13
+        },
+        "netWeight": {
+          "notNull": false,
+          "type": "cds.Decimal",
+          "scale": 3,
+          "precision": 13
+        },
+        "volume": {
+          "notNull": false,
+          "type": "cds.Decimal",
+          "scale": 3,
+          "precision": 13
+        },
+        "serialNumberProfile": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 4
+        },
+        "reorderPoint": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 13
+        },
+        "mrpType": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 3
+        },
+        "pricingIndicator": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 1
+        },
+        "weightUnit_code": {
+          "notNull": false,
+          "type": "cds.String",
+          "length": 2
+        },
+        "standardPrice_price": {
+          "notNull": false,
+          "type": "cds.Decimal",
+          "scale": 2,
+          "precision": 11
+        },
+        "movingAveragePrice_price": {
+          "notNull": false,
+          "type": "cds.Decimal",
+          "scale": 2,
+          "precision": 11
+        }
+      }
+    },
+    "MaterialMasterPlantData": {
+      "kind": "service",
+      "@cds.external": true
+    }
+  }
+}

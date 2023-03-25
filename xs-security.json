@@ -1,0 +1,8 @@
+{
+    "xsappname": "packaging-mng",
+    "tenant-mode": "dedicated",
+    "description": "Packaging Management App Security",
+    "scopes": [],
+    "attributes": [],
+    "role-templates": []
+}

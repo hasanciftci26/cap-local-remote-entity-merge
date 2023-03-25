@@ -1,0 +1,29 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="MasterDataService">
+            <EntityType Name="MaterialMasterPlantData">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="materialCode" Type="Edm.String" MaxLength="40"/>
+                <Property Name="plant" Type="Edm.String" MaxLength="4"/>
+                <Property Name="containerRequirements" Type="Edm.String" MaxLength="2"/>
+                <Property Name="grossWeight" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="netWeight" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="volume" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="serialNumberProfile" Type="Edm.String" MaxLength="4"/>
+                <Property Name="reorderPoint" Type="Edm.String" MaxLength="13"/>
+                <Property Name="mrpType" Type="Edm.String" MaxLength="3"/>
+                <Property Name="pricingIndicator" Type="Edm.String" MaxLength="1"/>
+                <Property Name="weightUnit_code" Type="Edm.String" MaxLength="2"/>
+                <Property Name="standardPrice_price" Type="Edm.Decimal" Precision="11" Scale="2"/>
+                <Property Name="movingAveragePrice_price" Type="Edm.Decimal" Precision="11" Scale="2"/>
+
+            </EntityType>
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="MaterialMasterPlantData" EntityType="MasterDataService.MaterialMasterPlantData"/>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

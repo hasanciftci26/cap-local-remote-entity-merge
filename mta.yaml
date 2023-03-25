@@ -1,0 +1,61 @@
+_schema-version: '3.1'
+ID: packaging-mng
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx -p @sap/cds-dk cds build --production
+modules:
+  - name: packaging-mng-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: packaging-mng-destinations
+      - name: packaging-mng-xsuaa
+      - name: packaging-mng-db
+
+  - name: packaging-mng-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: packaging-mng-db
+resources:
+  - name: packaging-mng-destinations
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: packaging-mng-destinations
+      service-plan: lite
+  - name: packaging-mng-xsuaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: packaging-mng-xsuaa
+      service-plan: application
+  - name: packaging-mng-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
